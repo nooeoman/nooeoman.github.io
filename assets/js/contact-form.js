@@ -61,33 +61,5 @@
         return false;
       }
 
-      //send the feedback e-mail
-      $.ajax({
-        type: "POST",
-        url: "assets/form/library/sendmail.php",
-        data: $("#feedbackForm").serialize(),
-        success: function(data) {
-          contactFormUtils.addAjaxMessage(data.message, false);
-          contactFormUtils.clearForm();
-          //get new Captcha on success
-          $('#captcha').attr('src', 'assets/form/library/vender/securimage/securimage_show.php?' + Math.random());
-        },
-        error: function(response) {
-          contactFormUtils.addAjaxMessage(response.responseJSON.message, true);
-        },
-        complete: function() {
-          $btn.button('reset');
-        }
-     });
-      return false;
-    });
-    $('#feedbackForm input, #feedbackForm textarea').change(function () {
-      var checkBox = $(this).siblings('span.input-group-addon').children('.glyphicon');
-      if ($(this).val()) {
-        checkBox.removeClass('glyphicon-unchecked').addClass('glyphicon-check').css({color: 'green'});
-      } else {
-        checkBox.removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
-      }
-    });
-  });
+  
 })();
